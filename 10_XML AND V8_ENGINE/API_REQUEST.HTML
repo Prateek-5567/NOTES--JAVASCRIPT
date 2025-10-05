@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API-XMLHTTP-REQ</title>
+</head>
+<body style="background-color: black; color:white">
+    <img src="" alt="">
+</body>
+<script>
+    let image = document.querySelector("img");
+    let url="https://randomuser.me//api";
+    /*
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET',url,true); // true for async.
+    xhr.onreadystatechange = function() {
+        console.log(xhr.readyState);
+        if(xhr.status===200 && xhr.readyState === 4){
+            let data = JSON.parse(xhr.responseText);
+            image.src = data.results[0].picture.medium ; 
+            console.log(data.info); 
+        }
+    }
+    xhr.send();  // yaha call hota h actually . send() called n headers received.
+    */
+   /*
+   // error handling :-
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET",url,true);
+    xhr.onload = function(){
+        if(xhr.status===200){let data = xhr.responseText;
+        console.log("success : ",data);}
+    } // onload means success => on success call this function.
+    xhr.onerror = function(){
+        console.log("request failed");
+    }
+    xhr.send();
+    */
+</script>
+</html>

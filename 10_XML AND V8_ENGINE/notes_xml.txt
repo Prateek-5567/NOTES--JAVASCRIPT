@@ -1,0 +1,93 @@
+// XML HTTP Request (XHR) Notes
+eXtensible Markup Language.(XML)
+
+# 1. XMLHttpRequest (XHR)
+    - Core technology for making HTTP requests from browser to server
+    - Foundation of AJAX (Asynchronous JavaScript And XML)
+    - Can handle various data formats (XML, JSON, plain text, etc.)
+
+# 2. Basic Syntax: let xhr = new XMLHttpRequest(); 
+    - The new keyword is used to create an instance of the XMLHttpRequest object.
+    - XMLHttpRequest is a constructor function provided by the browser.
+    - Using new allocates a new object with its own properties and methods,
+      allowing you to make HTTP requests.
+    - Without new, you would not get a usable XHR object.
+
+A constructor function is a function intended to create and initialize new objects.
+It's used together with the new keyword. Calling new Constructor()
+creates a fresh object, runs the function to initialize it, and returns the object.
+
+# 3. Main Events
+xhr.onreadystatechange    # Fired when readyState changes
+xhr.onload               # Fired when request completes successfully
+xhr.onerror             # Fired when request encounters error
+
+# 4. Important Properties
+   -  xhr.readyState         # tells the Current state (0-4)
+   -  xhr.status             # tells the HTTP status code (200, 404, etc.)
+   -  xhr.responseText       # gives Response as text : it is a string we need to JSON.parse(xhr.responseText)
+   -  xhr.responseXML        # gives Response as XML DOM object
+
+# 5. readyState Values
+  - 0: UNSENT - Client created, open() not called. (request not sent). let xhr=new XMLHttpRequest();
+  - 1: OPENED - open() called. xhr.open();
+  - 2: HEADERS_RECEIVED - send() called, headers received (yaha hoti actually request send.)
+  - 3: LOADING - Downloading response text (after receiving)
+  - 4: DONE - Operation completed 
+
+# 6. Basic Example
+function makeRequest() {
+     const xhr = new XMLHttpRequest();
+          
+     xhr.open('GET', 'https://api.example.com/data', true); // true for async
+     
+     xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+          }
+     };
+     
+     xhr.send();
+}
+xhr.readyState === 4 means the request is DONE (all data received or request failed).
+xhr.status === 200 checks the HTTP status code — 200 means OK/success for GET.
+
+# 7. Modern Example with Error Handling
+function fetchData() {
+     const xhr = new XMLHttpRequest();
+     
+     xhr.onload = function() {
+          if (xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                console.log('Success:', data);
+          }
+     };
+
+     xhr.onerror = function() {
+          console.error('Request failed');
+     };
+
+     xhr.open('GET', 'https://api.example.com/data', true);
+     xhr.send();
+}
+
+// 8. POST Request Example
+function postData(data) {
+     const xhr = new XMLHttpRequest();
+     
+     xhr.open('POST', 'https://api.example.com/post', true);
+     xhr.setRequestHeader('Content-Type', 'application/json');
+     
+     xhr.onload = function() {
+          if (xhr.status === 201) {
+                console.log('Data posted successfully');
+          }
+     };
+     
+     xhr.send(JSON.stringify(data));
+}
+
+
+Note: While XMLHttpRequest is still supported, modern web development
+     often uses the Fetch API or axios instead, as they provide cleaner
+     syntax and better Promise-based handling of requests.

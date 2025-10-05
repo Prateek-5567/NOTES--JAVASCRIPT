@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>DOM Learning </title>
+</head>
+<body style="background-color: #222; color:#fff">
+    <div class="week-days">
+        <div class="day">Monday</div>
+        <span class="day">Tuesday</span>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+<script>
+    let parent = document.querySelector('.week-days');
+
+// you can access the children of this parent node : parent.children  :-> it will be a HtmlCOllection -> array like, indexing and forEach() is still possible.
+    console.log(parent); // it returns a div (element Select hogya);
+    console.log(parent.children);  // it is a HTMLCollection of all its children    
+    console.log(parent.children[0].innerHTML);
+    
+    for(let i=0;i<parent.children.length;i++){
+        console.log(parent.children[i].textContent);
+    }
+    parent.children[1].style.color = "red";
+
+// how to access the first Child of any element
+    console.log(parent.firstElementChild); 
+    console.log(parent.lastElementChild); 
+
+// if you have child you can access its parent.
+    let children = document.getElementsByClassName('day');
+    //children is a NodeList or HTMLCollection ? ans : ./
+    // console.log(children);
+    
+    let child = children[0]; // you can do indexing on HTMLCollection.
+    console.log(child.parentElement); // get parent element
+    console.log(child.nextElementSibling);  // next element at same level. (irrespective of its properties or type)
+
+</script>
+
+</html>
+
+<!-- 
+DOM TREE : DOCUMENT OBJECT MODEL
+it is a tree structure of your html elements .
+
+                    WINDOW
+                       |
+                    DOCUMENT
+                   /        \             
+               HEAD          BODY
+               /  \           |
+            meta  title       div
+                            /    \
+                            h1    p   
+                             
+-->

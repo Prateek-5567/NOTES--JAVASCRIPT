@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAL CLOCK</title>
+</head>
+<body>
+    <div class="clock" style="font-size: x-large; border-radius: 15px;  width: 45vh; height: 15vh; background-color: black; color: white; margin: auto ; display: flex; align-items: center; justify-content: center;">
+        <h1></h1>
+    </div>
+</body>
+<script>
+
+    const clk = document.querySelector("h1");
+    
+    setInterval(function(){
+        let date = new Date;
+        clk.innerHTML = date.toLocaleTimeString();
+    }, 1000);  // call this function every 1000ms or every second.
+</script>
+</html>

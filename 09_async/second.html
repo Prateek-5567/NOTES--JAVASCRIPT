@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>first</title>
+</head>
+<body style="background-color: black; color: white;">
+    <h1>Hi! there I am Prateek
+    </h1>
+    <button id="start" style="height: 40px; width: 100px;"> START </button>
+    <br>
+    <button id="stop" style="height: 40px; width: 100px;"> STOP </button>
+</body>
+<script>
+    const start=document.getElementById("start");
+    const stop=document.getElementById("stop");
+
+    const element = document.querySelector("h1");
+    let arr=['software engineer','web Developer','problem solver','CS student at NSUT',"AI ENGINEER"];
+    let len=arr.length;
+    let i=0;
+    const skillsLoop = function(text){
+        console.log(text)
+        element.innerHTML = "Hi! there I am "+arr[i%len]; 
+        i++;
+        console.log(i);
+    }
+
+    let idLoop=null;
+    start.addEventListener('click',function(){
+        if(!idLoop){
+            idLoop = setInterval(skillsLoop, 2000,"skaktimaan");
+        }
+    });
+    stop.addEventListener('click',function(){
+        clearInterval(idLoop);
+        idLoop=null;
+        console.log("interval cleared")
+    })
+
+
+</script>
+</html>

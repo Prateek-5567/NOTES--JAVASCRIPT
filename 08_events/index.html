@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html events</title>
+</head>
+
+<!-- most of the task execute sequentially in javascript except few exceptions. -->
+<!-- exceptions include : events and async functions -->
+
+<body style="background-color: #424242; color:aliceblue; ">
+
+    <div>
+        <ul>
+            <li>
+                <img src="https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Nature" id="food" loading="lazy">
+            </li>
+<!-- here '?' means agar leftSide(img link) true ho to execute rightSide(properties) ..
+i.e image link se mil jaye to apply auto=compress and other properties -->
+<!-- 
+auto=compress → lets Pexels compress the image.
+cs=tinysrgb → uses their optimized color profile.
+w=600 (or any number) → resizes width for performance. 
+-->
+            <li>
+                <img id="Denmark" src="https://images.pexels.com/photos/33145845/pexels-photo-33145845.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Denmark" loading="lazy">
+            </li>
+            <li>
+                <img id="Women" src="https://images.pexels.com/photos/32854149/pexels-photo-32854149.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Women" loading="lazy">
+            </li>
+            <li>
+                <img id="Cat" src="https://images.pexels.com/photos/13157845/pexels-photo-13157845.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Cat" loading="lazy">
+            </li>
+            <li>
+                <img id="Car" src="https://images.pexels.com/photos/32825304/pexels-photo-32825304.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Car" loading="lazy">
+            </li>
+            <li>
+                <img id="Green" src="https://images.pexels.com/photos/30063037/pexels-photo-30063037.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Green" loading="lazy" onclick="alert('greenery')">
+            </li>
+        </ul>
+    </div>
+<!-- you can apply onclick=""  events on elements directly but that is not considered
+optimised way in js but is considered optimised way in react.
+so in js you should use script file to add events 
+-->
+</body>
+<script>
+    // onclick methods .
+    document.getElementById("Car").onclick = function(){
+        alert("Car is clicked");
+    }
+
+    // some basic events :
+    const element=document.getElementById("Denmark");
+    console.log(element);
+    element.addEventListener("click", function(e) {
+        console.log("view", e.view);              // Window object where event happened
+        console.log("coordinates:", e.x, e.y);    // Mouse click coordinates (relative to viewport)
+        console.log("time:", e.timeStamp);        // Time since page load (ms)
+        console.log("hi");                        // Your custom log
+    }, false); // third parameter = useCapture (default false → bubbling phase)
+
+    // event.type : tells you which event occured
+    document.getElementById("Cat").addEventListener("click", function (e) {
+        console.log("Event type:", e.type);
+    });
+
+    // event.timeStamp : main use : calculate time between two clicks.
+    let lastClick = 0;
+
+    document.getElementById("Women").addEventListener("click", function(e) {
+        if (lastClick) {
+            console.log("Time between clicks:", parseInt(e.timeStamp - lastClick)/1000, "seconds");
+        }
+        lastClick = e.timeStamp;  // update lastClick to store always the time of lastClick.
+    });
+
+    // prevent default :
+
+    // Forms (stop form from submitting/reloading page):
+
+    document.querySelector("form").addEventListener("submit", function(e) {
+        e.preventDefault(); // stops page reload
+        console.log("Form submission blocked, now handle with JS.");
+    });
+
+
+    // Links (stop navigation):
+
+    document.querySelector("a").addEventListener("click", function(e) {
+        e.preventDefault(); // stops going to href
+        console.log("Link clicked, but navigation prevented.");
+    });
+
+
+    // Context Menu (disable right-click menu):
+
+    document.addEventListener("contextmenu", function(e) {
+        e.preventDefault(); 
+        console.log("Right-click menu blocked.");
+    });
+    
+
+    // Keyboard shortcuts (override default behavior):
+
+    document.addEventListener("keydown", function(e) {
+        if (e.key === " " || e.key === "ArrowDown") {
+            e.preventDefault(); // prevent scrolling
+            console.log("Scroll prevented.");
+        }
+    });
+
+</script>
+</html>

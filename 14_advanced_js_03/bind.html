@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>button</button>
+</body>
+<script>
+    class react{
+        constructor(){
+            this.library="react";
+            this.server="https//localhost:5000";
+
+            // i want to do someTask:-
+            //1. when clicked on button handleClick function gets called.
+            document.querySelector("button")
+                    .addEventListener('click',this.handleClick.bind(this));  // handleClick ka reference dena h call nahi krna
+            // this.handleClick cuz iss class ka method call krna h. (required).
+        }
+        handleClick(){
+            console.log("button clicked");
+            console.log(this.server);  // undefined ayega agar iss class ka context sath me bind karke ni beja along with event listner.???
+            // abhi ye 'this'- eventListner jispar laga h , uske context ko point kar rha h .. but agar ham function call karte time 
+            // apni class ka context bind karke bejden to this will point to context of our class not that button.
+            
+            console.log(this);
+            // console.log(this); // compare the context before bind and after bind 
+            // before bind : this => points button obviously cuz this function if called for button click
+            // after bind : this => points to class context as we have binded the function with class context.
+
+            // justBecause wehave binded now this contains context of both :- react class and html button. 
+            // button's context is also required otherwise how will we get to know when button is clicked.
+        }
+    }
+    let user= new react;
+
+</script>
+</html>

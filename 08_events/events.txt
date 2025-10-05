@@ -1,0 +1,55 @@
+element.addEventListner('action',function(event){},T/F);
+
+there are hundreds of events : imp are:
+// attributes / data / variables:
+1. e.timeStamp
+2. e.x and e.y
+3. e.view
+4. e.type : tells you which event occured.
+5. The event.timeStamp property gives you the number of milliseconds since the document was loaded until that event occurred.
+
+// methods() : used with ()
+6. preventDefault() :- 
+event.preventDefault() is a method that stops the browser’s default behavior for an event.
+
+Common cases:
+
+Forms (stop form from submitting/reloading page):
+
+document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault(); // stops page reload
+    console.log("Form submission blocked, now handle with JS.");
+});
+
+
+Links (stop navigation):
+
+document.querySelector("a").addEventListener("click", function(e) {
+    e.preventDefault(); // stops going to href
+    console.log("Link clicked, but navigation prevented.");
+});
+
+
+Context Menu (disable right-click menu):
+
+document.addEventListener("contextmenu", function(e) {
+    e.preventDefault(); 
+    console.log("Right-click menu blocked.");
+});
+
+
+Keyboard shortcuts (override default behavior):
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === " " || e.key === "ArrowDown") {
+        e.preventDefault(); // prevent scrolling
+        console.log("Scroll prevented.");
+    }
+});
+
+
+7. event.target in JavaScript refers to the exact element that triggered the event.
+It’s different from this or event.currentTarget:
+event.target → the element where the event actually originated (deepest node clicked).
+event.currentTarget (or this inside the handler) → the element on which the event listener is attached.
+

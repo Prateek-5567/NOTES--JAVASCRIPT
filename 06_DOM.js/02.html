@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>DOM Learning </title>
+</head>
+<body style="background-color: #222; color:#fff">
+    <div class="week-days">
+        <div class="day">Monday</div>
+        <span class="day">Tuesday</span>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+<script>
+    let parent = document.querySelector('.week-days');
+
+    // childNodes property : it is also a complex tree like structure.
+    console.log("NODES : " , parent.childNodes);  
+/*
+NodeList(9) [text, div.day, text, span.day, text, div.day, text, div.day, text]
+    0: text         // first enter 
+    1: div.day      // the node is div.day Monday vali
+    2: text         // this node is the enter/lineBreak after Monday vali node ...
+    3: span.day     // span vali node. :.. every node is bound with many properties.
+    4: text
+    5: div.day
+    6: text
+    7: div.day
+    8: text
+    length: 9
+    [[Prototype]]: NodeList
+*/
+
+</script>
+
+</html>

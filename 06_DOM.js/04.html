@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+</head>
+<body style="background-color: #111; color: aliceblue;">
+    <ul class="langNames">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    // TASK : EDIT YOUR webPage
+    function appendLanguage(langName){
+        const li = document.createElement('li');
+        li.innerHTML = `${langName}`;
+        document.querySelector('.langNames').appendChild(li);
+    }
+    appendLanguage('python');
+    appendLanguage('cpp');
+    appendLanguage('react');
+
+    // adding optimisation in it using dsa:
+    // this code is unoptimised here you need to traverse entire dom tree again and again to append any child.
+    // kuch na karna bass document.createTextNode()  use karna and do not use innerText  or innerHTML etc.. (reason : 03.js)
+
+    function appendLanguageOptimised(langName){
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(langName));
+        document.querySelector('.langNames').appendChild(li);
+    }
+    appendLanguageOptimised("Optimisation")
+
+    // 3. change second lang. :: using textContent by creating new element and replacing with it.
+    const secondLi= document.querySelector("li:nth-child(2)");   // "elementName : nth-child(n)"
+    // secondLi.innerHTML="GoLang" .. unoptimised.
+    const newLi = document.createElement('li');  // optimised way.
+    newLi.textContent = "Go-Lang";
+    secondLi.replaceWith(newLi);  // naya li bana kar uss se replace kardia;
+
+    // 4. change first Lang. :: using outerHTML
+    const firstLang = document.querySelector("li:first-child");  // there are multiple li on page select first-child
+    firstLang.outerHTML = '<li>TYPE_SCRIPT</li>';
+
+    // B. remove elements from your webPage.
+    const lastLang = document.querySelector("li:last-child");
+    lastLang.remove();  // this func remove the selected element from DOM tree.
+
+/**
+ * If you want to target the last <li> inside the <ul> that itself is inside .heroSection, then you should scope your selector
+    const lastLang = document.querySelector(".heroSection ul li:last-child");   // this way you use scope resolution inside querySelector just give space.
+*/
+
+</script>
+</html>

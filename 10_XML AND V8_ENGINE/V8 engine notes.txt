@@ -1,0 +1,10 @@
+js is a written on top of cpp
+node js is a implementation of v8 engine  
+v8 is written in cpp . its repo is available on github 
+aapka console.log bhi yahi defined hota h it is not a part of core js.
+document.example also
+
+api is not just about calls get / post
+api application programming interface provides an interface for two languages two projects etc to communicate
+eg backend communicate with frontend using api's
+

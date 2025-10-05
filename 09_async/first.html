@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>first</title>
+</head>
+<body style="background-color: black; color: white;">
+    <h1>Hi! there I am using vscode
+    </h1>
+    <button id="stop" style="height: 40px; width: 100px;"> STOP </button>
+</body>
+<script>
+    const myfunc = function(){
+        console.log("I waited for 3 seconds")
+    }
+    // setTimeout(myfunc,3000);  // myfunc() mat kar dena : ref. pass karna h yahi pe call kardia to 3 sec wait nahi krega sidha run hoga
+    const element = document.querySelector("h1");
+    const changeText1 = function(){
+        element.innerHTML = "Hi! there i am using Chrome!";
+        setTimeout(changeText2,2000);
+    }
+    const changeText2 = function(){
+        element.innerHTML = "Hi! there i am using Vscode!";
+        // setTimeout(changeText1,2000);  // make infinite loop over functions to make them continously changing
+    }
+    // setTimeout(changeText1,2000);
+
+
+    const SimpleTimer = setTimeout( ()=>{
+        element.innerHTML="I am praticing js."
+    },3000);
+    // lets play a game : STOP ME IF YOU CAN IN #3 seconds.
+    // I want whenever I click on stop then eventLoop se setTimeOut hat jaye
+    // i.e if i click on stop before the timout of above SimpleTimer then it will be cleared from webAPI or task queue and wont complete its work. MISSION ABORT.
+    const stopButton = document.querySelector("#stop");
+    stopButton.addEventListener('click',function(){
+        stopButton.style.backgroundColor="red";
+        clearTimeout(SimpleTimer);
+        console.log("Cleared async call for h1 tag.")
+    });
+</script>
+</html>
